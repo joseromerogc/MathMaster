@@ -1,10 +1,10 @@
 <?php
 
-namespace mathmaster\Http\Requests;
+namespace mathmaster\Http\Requests\Usuario;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UsuarioFormRequest extends FormRequest
+class RoleFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class UsuarioFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'name' => 'required|max:255'
         ];
             //
         

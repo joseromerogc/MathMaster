@@ -48,7 +48,7 @@ margin-bottom: 0px
 
 /* side-menu section */
 .nav > li > a:hover, .nav > li > a:focus {
-    background-color:rgba(74, 72, 126, 0);
+    background-color: rgb(138, 134, 225);
 }
 .navbar-top-links  .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background-color: #75C5B8;
@@ -83,6 +83,12 @@ padding: 20px 15px;
         }
         .yellow {
             background-color:rgb(237, 253, 46);
+        }
+        .fuscia {
+            background-color: rgb(255,0,255);
+        }
+        .orange {
+            background-color:   rgb(255,165,0);
         }
 
   /* No border */

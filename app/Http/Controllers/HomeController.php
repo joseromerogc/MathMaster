@@ -3,6 +3,9 @@
 namespace mathmaster\Http\Controllers;
 
 use Illuminate\Http\Request;
+use mathmaster\User;
+use mathmaster\App\Role;
+use Laratrust;
 
 class HomeController extends Controller
 {
@@ -22,7 +25,18 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home');
+    {   
+        
+        //sino tiene el usuario participante lo registramos
+
+        if(Laratrust::user()->hasRole('admin')){
+        $usuarios=Role::with('users')->where('id', 3)->get();            
+        $cantidadusuarios=$usuarios->count();
+        return view('admin.home',["usuarios"=>$usuarios,"cantidadusuarios"=>$cantidadusuarios]);
+        }
+        else{
+         return view('home');   
+        }
+        
     }
 }

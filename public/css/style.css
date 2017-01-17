@@ -130,14 +130,17 @@ limitations under the License.*/
 .nav-second-level li,
 .nav-third-level li {
     border-bottom: none !important;
+
 }
 
 .nav-second-level li a {
     padding-left: 37px;
+    background-color: #ff3d36;
 }
 
 .nav-third-level li a {
     padding-left: 52px;
+    background-color: #6060bc;
 }
 
 @media(min-width:768px) {

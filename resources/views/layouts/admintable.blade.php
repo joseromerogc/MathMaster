@@ -57,7 +57,6 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap4.min.js"></script>
     @yield('script')
 
-
 </body>
 
 </html>

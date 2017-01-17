@@ -3,13 +3,23 @@
 namespace mathmaster\Http\Controllers;
 
 use Illuminate\Http\Request;
-use sysVentas\Articulo;
+use mathmaster\User;
+use Laratrust;
 use Illuminate\Support\Facades\Redirect;
-use sysVentas\Http\Requests\UsuarioFormRequest;
+use mathmaster\Http\Requests\UsuarioFormRequest;
 use DB;
 
 class UsuarioController extends Controller
-{
+{   
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +27,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-            $usuarios=DB::table('users')->get();
+            $usuarios=User::with('roles')->get();            
             return view('usuario.index',["usuarios"=>$usuarios]);
         
     }
@@ -29,7 +39,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return 'sirve';
+        return view('usuario.create');
     }
 
     /**
@@ -38,9 +48,15 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsuarioFormRequest $request)
     {
-        //
+        $user = User::create([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => bcrypt($request->get('password')),
+        ]);
+        $user->save();
+        return Redirect::to('usuario')->with('alert-success', "Usuario $user->name Creado con Éxito");;
     }
 
     /**
@@ -62,7 +78,10 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(Laratrust::user()->can('edit-user')){
+            $user=User::findOrFail($id);
+            return view('edit.update',['user'=>$user]);       
+        }
     }
 
     /**
@@ -74,7 +93,20 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user =Laratrust::user();
+
+        if(Laratrust::user()->can('edit-user')){
+            $user=User::findOrFail($id);
+        }else{
+            $user =Laratrust::user();            
+        }
+
+            $user->name = $request->get('name');
+            $user->email = $request->get('email');
+            $user->password = bcrypt($request->get('password'));
+        
+        $user->update();
+        return Redirect::to('usuario')->with('alert-success', "Usuario $user->name Actualizado con Éxito");;
     }
 
     /**
@@ -85,6 +117,10 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user=User::findOrFail($id);
+        $name=$user->name;
+        $user->delete();
+
+        return Redirect::to('usuario')->with('alert-success', "Usuario $user->name Eliminado con Éxito");
     }
 }

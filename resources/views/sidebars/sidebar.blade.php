@@ -10,7 +10,7 @@
                                 <img src="{{asset('img/user.jpg')}}" alt="">
                             </div>
                             <div class="user-info">
-                                <div>Jonny <strong>Deen</strong></div>
+                                <div>{{Auth::user()->name}}</div>
                                 <div class="user-text-online">
                                     <span class="user-circle-online btn btn-success btn-circle "></span>&nbsp;Online
                                 </div>
@@ -38,6 +38,24 @@
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="{{url('/usuario')}}">Lista</a>
+                            </li>
+                            <li>
+                                <a href="#">Role <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    
+                                    <li>
+                                        <a href="{{url('/role')}}">Lista</a>
+                                    </li>
+                                </ul>f
+                            </li>
+                            <li>
+                                <a href="#">Permisos <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    
+                                    <li>
+                                        <a href="{{url('/permission')}}">Lista</a>
+                                    </li>
+                                </ul>f
                             </li>
                         </ul>
                         <!-- second-level-items -->

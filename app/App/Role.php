@@ -1,6 +1,5 @@
 <?php
-
-namespace App;
+namespace mathmaster\App;
 
 use Laratrust\LaratrustRole;
 

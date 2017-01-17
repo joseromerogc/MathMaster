@@ -34,7 +34,7 @@ Usuarios
                         <div class="panel-heading">
                         <div class="row">
                         <div class="col-lg-8"><h4>Lista de Usuarios </h4></div>
-                        <div class="col-lg-4"><a href="articulo/create"><button class="btn btn-success">Nuevo Usuario</button></a></div>
+                        <div class="col-lg-4"><a href="{{url('usuario/create')}}"><button class="btn btn-success">Nuevo Usuario</button></a></div>
                         </div>    
                         </div>
                         <div class="panel-body">
@@ -45,6 +45,7 @@ Usuarios
                                             <th>ID</th>
                                             <th>Nombre</th>
                                             <th>Correo Electrónico</th>
+                                            <th>Roles</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
@@ -54,13 +55,18 @@ Usuarios
                                                 <td>{{$u->id}}</td>
                                                 <td>{{$u->name}}</td>
                                                 <td>{{$u->email}}</td>
-                                                <td></td>
-                                                {{-- <td>
-                                                    <a href="{{URL::action('ArticuloController@edit',$art->idarticulo) }}"><button class="btn btn-info"> Editar</button></a>
-                                                    <a href="" data-target="#modal-delete-{{$art->idarticulo}}" data-toggle="modal" ><button class="btn btn-danger" > Eliminar</button></a>
-                                                </td> --}}
+                                                <td>
+                                                    @foreach($u->roles as $r)
+                                                    <span class="label label-primary">{{$r->display_name}}></span>
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    <a href="{{URL::action('UsuarioController@edit',$u->id) }}"><button class="btn btn-info"> Editar</button></a>
+                                                    <a href="" data-target="#modal-delete-{{$u->id}}" data-toggle="modal" ><button class="btn btn-danger" > Eliminar</button></a>
+                                                    <a href="{{URL::action('Laratrust\RoleController@listaajustar',$u->id) }}" ><button class="btn btn-success" > Ajustar Roles</button></a>
+                                                </td>
                                             </tr>
-                                            {{-- @include('almacen.articulo.modal') --}}
+                                            @include('usuario.modal')
                                         @endforeach
 
                                     </tbody>
@@ -71,5 +77,4 @@ Usuarios
                     </div>
                     <!--End Advanced Tables -->
 </div>
-
 @endsection

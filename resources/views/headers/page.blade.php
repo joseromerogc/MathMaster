@@ -7,11 +7,21 @@
 
                         <div class="alert alert-{{ $msg }} alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <h4>{{ Session::get('alert-' . $msg) }}</h4>
+                                <h4>{!! Session::get('alert-' . $msg) !!}</h4>
                                 </div>
                         @endif    
                     @endforeach
-    
+                    @if (count($errors)>0)
+                    <div class="alert alert-danger ">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>
+        {{$error}}
+        </li>
+        @endforeach
+    </ul>
+    </div>
+        @endif
                                 
                             
                 </div>
