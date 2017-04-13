@@ -182,6 +182,8 @@ return [
          */
         Laratrust\LaratrustServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Mews\Purifier\PurifierServiceProvider::class,
+        mathmaster\Providers\ComposerServiceProvider::class
 
     ],
 
@@ -221,6 +223,7 @@ return [
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
         'Password' => Illuminate\Support\Facades\Password::class,
+        'Purifier' => Mews\Purifier\Facades\Purifier::class, //NUEVA
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
         'Redis' => Illuminate\Support\Facades\Redis::class,

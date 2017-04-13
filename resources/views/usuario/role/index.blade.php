@@ -58,7 +58,7 @@ Roles
                                                 <td>{{$r->description}}</td>
                                                 <td>
                                                     @foreach($r->permissions as $p)
-                                                    <span class="label label-primary">{{$p->display_name}}></span>
+                                                    <span class="label label-primary">{{$p->display_name}}</span>
                                                     @endforeach
                                                 </td>
                                                 <td>

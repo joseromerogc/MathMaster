@@ -11,6 +11,26 @@
     <link href="{{asset('plugins/pace/pace-theme-big-counter.css')}}" rel="stylesheet" />
     <link href="{{asset('css/style.css')}}" rel="stylesheet" />
     <link href="{{asset('css/main-style.css')}}" rel="stylesheet" />
+    <!-- Favicon -->
+        <link rel="icon" href="http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/16/Categories-applications-education-university-icon.png" type="image/x-icon">
+
+{{-- $("#msg").html(data.msg); --}}
+
+    <script type="text/javascript" src="{{asset('js/ajax.js')}}" >
+    </script>
+    <script type="text/javascript">
+        function getMessage(){
+            alert("hello");
+            $.ajax({
+               type:'POST',
+               url:'/getmsg',
+               data:'_token = <?php echo csrf_token() ?>',
+               success:function(data){
+                  console.log(data.msg);
+               }
+            });
+         }
+    </script>
 
 </head>
 

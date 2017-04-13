@@ -11,6 +11,23 @@
     <link href="{{asset('plugins/pace/pace-theme-big-counter.css')}}" rel="stylesheet" />
     <link href="{{asset('css/style.css')}}" rel="stylesheet" />
     <link href="{{asset('css/main-style.css')}}" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <!-- Favicon -->
+        <link rel="icon" href="http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/16/Categories-applications-education-university-icon.png" type="image/x-icon">
+
+    {{-- $("#msg").html(data.msg); --}}
+
+    <script src="{{asset('js/ajax.js')}}"></script>
+    <script type="text/javascript">
+$(document).ready(function() {
+        function blinker() {
+    $('.blink_me').fadeOut(80);
+    $('.blink_me').fadeIn(80);
+    }
+    setInterval(blinker, 1000);
+});
+    </script>
+
     @yield('head')
 </head>
 
@@ -42,12 +59,19 @@
 
         </div>
         <!-- end page-wrapper -->
-
+        <!-- SHOW MODAL -->
+        @foreach($msgs as $m)
+            @include('mensajes.modalshow')
+        @endforeach
     </div>
+
+
     <!-- end wrapper -->
+    
+    
 
     <!-- Core Scripts - Include with every page -->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    
     <script src="{{asset('plugins/bootstrap/bootstrap.min.js')}}"></script>
     <script src="{{asset('plugins/metisMenu/jquery.metisMenu.js')}}"></script>
     <script src="{{asset('plugins/pace/pace.js')}}"></script>

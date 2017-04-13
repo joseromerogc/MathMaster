@@ -57,7 +57,7 @@ Usuarios
                                                 <td>{{$u->email}}</td>
                                                 <td>
                                                     @foreach($u->roles as $r)
-                                                    <span class="label label-primary">{{$r->display_name}}></span>
+                                                    <span class="label label-primary">{{$r->display_name}}</span>
                                                     @endforeach
                                                 </td>
                                                 <td>

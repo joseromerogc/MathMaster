@@ -12,6 +12,8 @@
     <link href="{{asset('css/style.css')}}" rel="stylesheet" />
     <link href="{{asset('css/main-style.css')}}" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <!-- Favicon -->
+        <link rel="icon" href="http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/16/Categories-applications-education-university-icon.png" type="image/x-icon">
     @yield('head')
 </head>
 

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
 {
-    
-    public function users()
+    public $timestamps=false;
+    public function perfiles()
     {
-        return $this->hasMany('mathmaster\User');
+        return $this->hasMany('mathmaster\Perfil\Perfil');
     }
 }

@@ -67,7 +67,7 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -80,8 +80,19 @@ class UsuarioController extends Controller
     {
         if(Laratrust::user()->can('edit-user')){
             $user=User::findOrFail($id);
-            return view('edit.update',['user'=>$user]);       
+            return view('usuario.edit',['user'=>$user]);       
         }
+        else{
+         $user=Laratrust::user();
+            return view('usuario.edit',['user'=>$user]);          
+        }
+    }
+    public function editar()
+    {
+    
+         $user=Laratrust::user();
+            return view('usuario.edit',['user'=>$user]);          
+        
     }
 
     /**
