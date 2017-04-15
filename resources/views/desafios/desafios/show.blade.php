@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('encabezado')
-<i class="fa fa-globe fa-fw"></i> Desafio {{$desafio->nombre}} | 
+<i class="fa fa-gamepad fa-fw"></i> Desafio {{$desafio->nombre}} | 
 <a href="{{URL::action('Desafio\SubEscenarioController@show',$desafio->SubEscenario->id) }}">{{$desafio->SubEscenario->nombre}}</a>
- <i class="fa fa-globe fa-fw"></i>
+ <i class="fa fa-gamepad fa-fw"></i>
  @role('admin')
 <div class="btn-group">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">

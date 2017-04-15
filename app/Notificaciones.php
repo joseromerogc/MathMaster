@@ -76,10 +76,10 @@ class Notificaciones extends Model
             return "Hace ".intval(($time_differnce/$minutes))." Minuto";
         }else if (intval(($time_differnce)) > 1) 
         {
-            return "Hace ".intval(($time_differnce))." seconds ago";
+            return "Hace ".intval(($time_differnce))." pocos segundos segundos";
         }else
         {
-            return "Hace pocos segundos";
+            return "Hace un segundo";
         }
     }
 

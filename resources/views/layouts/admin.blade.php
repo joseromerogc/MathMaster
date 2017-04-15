@@ -9,6 +9,8 @@
     <link href="{{asset('plugins/bootstrap/bootstrap.css')}}" rel="stylesheet" />
     <link href="{{asset('font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
     <link href="{{asset('plugins/pace/pace-theme-big-counter.css')}}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+
     <link href="{{asset('css/style.css')}}" rel="stylesheet" />
     <link href="{{asset('css/main-style.css')}}" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -63,8 +65,8 @@ $(document).ready(function() {
         @foreach($msgs as $m)
             @include('mensajes.modalshow')
         @endforeach
-    </div>
 
+        @include('sidebars.modal-image')
 
     <!-- end wrapper -->
     

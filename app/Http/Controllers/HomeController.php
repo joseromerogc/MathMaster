@@ -73,7 +73,7 @@ class HomeController extends Controller
 
          if(!$experiencia){
                     Experiencia::create([
-                                'nivel' => 0,
+                                'nivel' => 1,
                                 'puntos_nivel' => 0,
                                 'efectividad' => 0,
                                 'velocidad' => 0,
@@ -90,16 +90,24 @@ class HomeController extends Controller
 
          $titulo = TituloUser::where('user_id',Laratrust::user()->id)->with('titulo')->get()->last();
 
+         //LANZADOR DESAFIO
+         $desafio = RespuestaUser::where('user_id',Laratrust::user()->id)->where('superada',"NO")->get()->first();
 
-         return view('home',['experiencia'=>$experiencia,'superadas'=>$superadas,'velocidad'=>$velocidad,'titulo'=>$titulo]);   
+         if(!$desafio)
+            $desafio = Desafio::where('nivel',"<=",$experiencia->nivel)->get()->first();
+
+         return view('home',['experiencia'=>$experiencia,'superadas'=>$superadas,'velocidad'=>$velocidad,'titulo'=>$titulo,'desafio'=>$desafio->id]);   
         }
         
     }
   public function tops()
     {   
        $usuarios = User::join('experiencias as e','users.id','=', 'e.user_id')->
+       join('role_user as ru','users.id','=', 'ru.user_id')->
+       where('ru.role_id','=','3')->
        select('users.name',DB::raw('(e.nivel*250+e.puntos_nivel) as puntostotal'),'e.nivel'
-        )->get();
+        )->orderby('e.nivel','desc')->orderby('e.puntos_nivel','desc')->limit(10)->
+       get();
 
       return view('usuario.tops',['usuarios'=>$usuarios]);   
 

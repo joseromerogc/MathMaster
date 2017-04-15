@@ -19,7 +19,7 @@
 <div class="row">
 <div class="col-lg-12">
         <div class="text-center">
-            <img  src="{{asset('img/dart-board.png')}}" height="60px" />            
+                        <img  src="{{$escenario->fondo}}" height="200px" />            
         </div>
 			    @foreach($subescenarios as $sub)
                     <div class="col-lg-12">

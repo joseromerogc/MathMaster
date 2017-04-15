@@ -30,4 +30,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function Perfil()
+    {
+        return $this->belongsTo('mathmaster\Perfil\Perfil','user_id');
+    }
+
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use mathmaster\Http\Controllers\Controller;
 use Laratrust;
 use mathmaster\Perfil\Perfil;
+use mathmaster\Perfil\Matetoon;
 use mathmaster\Http\Requests\Usuario\PerfilFormRequest;
 use Illuminate\Support\Facades\Redirect;
 use DB;
@@ -20,6 +21,8 @@ class PerfilController extends Controller
     public function index()
     {
         $perfil = Perfil::where('user_id', Laratrust::user()->id)->with('user')->with('country')->first();
+
+        $user = DB::table('users')->where('id', Laratrust::user()->id)->first();
 
         if(!$perfil)
             return redirect()->action('Perfil\PerfilController@create');
@@ -116,6 +119,29 @@ class PerfilController extends Controller
      */
     public function destroy($id)
     {
-        return "sfsf";
+       // return "sfsf";
     }
+    public function matetoon($url)
+    {   
+        $matetoon = Matetoon::where('user_id', Laratrust::user()->id)->first();
+
+        $img['newton']="https://lh3.googleusercontent.com/-pp7SnnO7bWo/U6N4BC_b82I/AAAAAAAAEsg/uVDOxLXUKhU/s1600/caricature-isaac-newton.png";
+        $img['leibniz']="https://goo.gl/60JCFA";
+        $img['descartes']="https://goo.gl/s6CFtq";
+        $img['gauss']="https://goo.gl/3XtFuw";
+
+        if($matetoon){
+            $matetoon->imagen=$img[$url];
+            $matetoon->update();
+        }
+        else{
+        $matetoon = MateToon::create([
+            'imagen' => $img[$url],
+            'user_id' => Laratrust::user()->id,
+        ]);
+        $matetoon->save();
+        }
+        return Redirect::back()->with('alert-success','<b>MateTOON</b> Cambiado Exitosamente');
+    }
+
 }

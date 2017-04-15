@@ -30,6 +30,9 @@
 <div class="row">
                     
                     <div class="col-lg-12">
+                    <div class="text-center">
+                        <img src="{{$subescenario->fondo}}" height="200px" />            
+                    </div>
                      <!--  Alert Styles -->
                     <div class="panel panel-default">
                         <div class="panel-heading text-center">

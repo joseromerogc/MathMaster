@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('encabezado')
-Top Usuarios
+Top Jugadores
 @endsection
 
 @section('contenido')
@@ -9,7 +9,7 @@ Top Usuarios
                      <!--   Basic Table  -->
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h4>Los mejores Usuarios</h4>
+                            <h4>Los Mejores</h4>
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -19,13 +19,13 @@ Top Usuarios
                                             <th>#</th>
                                             <th>Nombre</th>
                                             <th>Nivel</th>
-                                            <th>Puntos</th>
+                                            <th>Puntos Totales</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($usuarios as $i=>$u)
                                         <tr>
-                                            <td>{{$i}}</td>
+                                            <td>{{$i+1}}</td>
                                             <td>{{$u->name}}</td>
                                             <td>{{$u->nivel}}</td>
                                             <td>{{$u->puntostotal}}</td>

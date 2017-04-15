@@ -6,34 +6,9 @@
                     <li>
                         <!-- user image section-->
                         <div class="user-section">
-                            <div class="user-section-inner">
-                                <img src="{{asset('img/user.jpg')}}" alt="" width="10px">
-                            </div>
-                            <div class="user-info">
-                                <div>
-                                <small><em>
-                                {{ str_limit(Auth::user()->name, $limit = 18, $end = '...')}}
-                                
-                                </em></small>
-                                </div>
-                                <div class="user-text-online">
-                                    <span class="user-circle-online btn btn-success btn-circle "></span>&nbsp;Online
-                                </div>
-                            </div>
+                            @include('sidebars.infouser')
                         </div>
                         <!--end user image section-->
-                    </li>
-                    <li class="sidebar-search">
-                        <!-- search section-->
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Buscar...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                        <!--end search section-->
                     </li>
                     <li class="">
                         <a href="/home"><i class="fa fa-dashboard fa-fw"></i>Escritorio</a>

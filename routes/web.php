@@ -83,3 +83,4 @@ Route::get('/notificaciones/desafio','NotificacionController@desafio');
 Route::get('/notificaciones/titulo','NotificacionController@titulo');
 Route::get('/mensajes/general','MensajeController@general');
 Route::get('/tops','HomeController@tops');
+Route::get('/matetoon/{url}','Perfil\PerfilController@matetoon');

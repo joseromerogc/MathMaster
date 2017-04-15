@@ -5,6 +5,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use mathmaster\Mensaje;
 use mathmaster\Titulo;
+use mathmaster\User;
 use mathmaster\TituloUser;
 use mathmaster\Notificaciones;
 use mathmaster\Desafio\Experiencia;
@@ -32,7 +33,7 @@ class GlobalComposer {
 
         if(!$experiencia){
             $experiencia=  Experiencia::create([
-                                'nivel' => 0,
+                                'nivel' => 1,
                                 'puntos_nivel' => 0,
                                 'efectividad' => 0,
                                 'velocidad' => 0,
@@ -119,6 +120,21 @@ class GlobalComposer {
         $noti_historial =Notificaciones::where('user_id',Auth::user()->id,'and')->where('tipo','historial','and')->where('leido',"NO")->get();
         $noti_titulo =Notificaciones::where('user_id',Auth::user()->id,'and')->where('tipo','titulo','and')->where('leido',"NO")->get();
 
+        //RANKING
+
+        $total_usuario = User::join('experiencias as e','users.id','=', 'e.user_id')->
+       join('role_user as ru','users.id','=', 'ru.user_id')->
+       where('ru.role_id','=','3')->get()->count();
+       //usuarios por debajo del nivel y puntos
+       $usuarios_down = User::join('experiencias as e','users.id','=', 'e.user_id')->
+       join('role_user as ru','users.id','=', 'ru.user_id')->
+       where('ru.role_id','=','3','and')->where('e.nivel','<',$experiencia->nivel,'and')
+       ->where('e.puntos_nivel','<=',$experiencia->puntos_nivel)
+       ->get()->count();
+
+       $rank= $total_usuario-$usuarios_down;
+
+
         $view->with('msgs', $msgs);
         $view->with('nivel_porc', $nivel_porc);
         $view->with('puntos_nivel_porc', $puntos_nivel_porc);
@@ -129,6 +145,7 @@ class GlobalComposer {
         $view->with('noti_desafio', $noti_desafio);
         $view->with('noti_historial', $noti_historial);
         $view->with('noti_titulo', $noti_titulo);
+        $view->with('ranking', $rank);
         $view->with('notificaciones', $noti_nivel->count()+$noti_desafio->count()+$msgenerales->count()+$noti_historial->count()+$noti_titulo->count());
 
         }
